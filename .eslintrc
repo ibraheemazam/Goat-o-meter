@@ -1,4 +1,7 @@
 {
   "extends": "airbnb",
-  "ignorePatterns": ["webpack.config.js"]
+  "ignorePatterns": ["webpack.config.js"],
+  "rules": {
+    "no-console": "off"
+  }
 }
