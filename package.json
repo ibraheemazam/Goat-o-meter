@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "node server/index.js",
-    "client-dev": "webpack serve",
-    "build": "webpack"
+    "server": "nodemon server/index.js",
+    "build": "webpack --mode=development --watch"
   },
   "author": "Ibraheem",
   "license": "ISC",

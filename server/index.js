@@ -6,6 +6,8 @@ const port = process.env.PORT;
 
 app.use(express.json());
 
+app.use(express.static('/Users/ibraheemazam/Documents/rfp-2205/projects/MVP/client/dist'));
+
 app.get('/', (req, res) => {
   res.send('is my server working eh?');
 });
