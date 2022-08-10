@@ -6,13 +6,20 @@ import PlayerCard from './PlayerCard/PlayerCard.jsx';
 function App() {
   return (
     <ChakraProvider>
-      <Box m="3vw" mb="6vw">
-        <Heading display="flex" justifyContent="center">
+      <Box m="3vw" mb="6vw" display="flex" alignItems="center" justifyContent="space-evenly">
+        <img
+          src="photos/194-1947999_funny-goat-png-gg-goat.png"
+          alt="goat pic"
+          width="20%"
+        />
+        <Heading fontSize="5xl">
           Goat-o-meter
         </Heading>
-      </Box>
-      <Box m="3vw">
-        <div>Ibby was here and hes the goatttt</div>
+        <img
+          src="photos/24-240162_goat-png.png"
+          alt="goat pic"
+          width="20%"
+        />
       </Box>
       <Box m="3vw" mb="8vw">
         <PlayerFilter />

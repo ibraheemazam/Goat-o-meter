@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, Stack, Input, Select,
+  Box, FormControl, Input, Select, Button
 } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -18,9 +18,14 @@ function PlayerFilter() {
   //   .then((result) => console.log(result.data.data)) //data.data[0] is actual lebron info
   //   .catch((err) => console.log('error retrieving player info from API:\n', err));
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log({ players, seasonP });
+  }
+
   return (
     <div>
-      <Stack>
+      <form onSubmit={(e) => handleSubmit(e)}>
         <Input
           placeholder="Enter a player"
           onChange={(e) => setPlayers([e.target.value])}
@@ -31,7 +36,10 @@ function PlayerFilter() {
         >
           {allSeasons.map((season) => <option key={season}>{2000 + season}</option>)}
         </Select>
-      </Stack>
+        <Button type="submit" loadingText="calculating" >
+          Add comp
+        </Button>
+      </form>
     </div>
   );
 }
