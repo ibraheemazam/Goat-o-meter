@@ -2,6 +2,7 @@
   "extends": "airbnb",
   "ignorePatterns": ["webpack.config.js"],
   "rules": {
-    "no-console": "off"
+    "no-console": "off",
+    // "import/extensions": ["always"]
   }
 }

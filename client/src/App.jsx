@@ -1,8 +1,9 @@
 import React from 'react';
-import { ChakraProvider, Box, Flex, Heading } from '@chakra-ui/react';
+import { ChakraProvider, Box, Heading } from '@chakra-ui/react';
+import PlayerFilter from './Filters/Player.jsx';
+import PlayerCard from './PlayerCard/PlayerCard.jsx';
 
-
-const App = function App() {
+function App() {
   return (
     <ChakraProvider>
       <Box m="3vw" mb="6vw">
@@ -13,9 +14,13 @@ const App = function App() {
       <Box m="3vw">
         <div>Ibby was here and hes the goatttt</div>
       </Box>
-      <Box m="3vw">
-        <div>add player cards here</div>
+      <Box m="3vw" mb="8vw">
+        <PlayerFilter />
       </Box>
+      <Box m="3vw">
+        <PlayerCard />
+      </Box>
+
     </ChakraProvider>
   );
 };
