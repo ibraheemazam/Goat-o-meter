@@ -36,7 +36,7 @@ function PlayerFilter() {
         >
           {allSeasons.map((season) => <option key={season}>{2000 + season}</option>)}
         </Select>
-        <Button type="submit" loadingText="calculating" >
+        <Button type="submit" loadingText="calculating">
           Add comp
         </Button>
       </form>

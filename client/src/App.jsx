@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ChakraProvider, Box, Heading } from '@chakra-ui/react';
-import PlayerFilter from './Filters/Player.jsx';
+import PlayerFilter from './Filters/PlayerFilter.jsx';
 import PlayerCard from './PlayerCard/PlayerCard.jsx';
 
 function App() {
+  const [player, setPlayer] = useState();
+  const [season, setSeason] = useState();
+
   return (
     <ChakraProvider>
       <Box m="3vw" mb="6vw" display="flex" alignItems="center" justifyContent="space-evenly">
@@ -30,6 +33,6 @@ function App() {
 
     </ChakraProvider>
   );
-};
+}
 
 export default App;

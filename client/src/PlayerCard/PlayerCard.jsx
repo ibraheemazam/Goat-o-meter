@@ -4,7 +4,7 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 
-function PlayerCard() {
+function PlayerCard() { //this will take in player and season as props
   const [player, setPlayer] = useState({});
   const [games, setGames] = useState([]);
   const [ppg, setPpg] = useState();
@@ -73,8 +73,8 @@ function PlayerCard() {
 
   return (
     <div>
-      <Box bg="#b9817f69" w="35vw">
-        <Box className="titleContainer" display="flex">
+      <Box w="35vw" border="1px" borderRadius="10px">
+        <Box m="1vw" className="titleContainer" display="flex">
           <Text display="flex" justifyContent="center" w="25%" fontSize="xl">
             {player.team.abbreviation}
           </Text>
@@ -83,10 +83,13 @@ function PlayerCard() {
             {`${player.height_feet}'${player.height_inches}''`}
           </Text>
         </Box>
-        <Box>
+        <Box m="2vw">
           <Text>{ppg.toString()}</Text>
           <Text>{apg.toString()}</Text>
           <Text>{rpg.toString()}</Text>
+        </Box>
+        <Box display="flex" justifyContent="center">
+          <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/2544.png" />
         </Box>
       </Box>
     </div>
@@ -94,3 +97,5 @@ function PlayerCard() {
 }
 
 export default PlayerCard;
+
+//bg="#b9817f69"
