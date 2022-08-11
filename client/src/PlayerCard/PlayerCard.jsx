@@ -5,29 +5,7 @@ import {
 import axios from 'axios';
 
 function PlayerCard({ player }) {
-  // const [player, setPlayer] = useState({});
-  const [playerID, setPlayerID] = useState({});
-  const photoSrc = `https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerID.person_id}.png`;
-
-  // function getPlayer() {
-  //   return (
-  //     axios.get('/playerStats', {
-  //       params: {
-  //         player: playerInfo.player,
-  //         season: playerInfo.season,
-  //       },
-  //     })
-  //       .then((result) => {
-  //         console.log('player stats line 21', result.data[0]);
-  //         if (result.data[0]) {
-  //           setPlayer(result.data[0]);
-  //         } else {
-  //           console.log("that player was not found");
-  //         }
-  //       })
-  //       .catch((err) => console.log('error retrieving player info from API:\n', err))
-  //   );
-  // }
+  const [photoSrc, setPhotoSrc] = useState('photos/goat-transparent-1.png');
 
   function getID() {
     axios.get('playerPhoto', {
@@ -37,14 +15,13 @@ function PlayerCard({ player }) {
     })
       .then((result) => {
         console.log('plater id line 35', result.data);
-        setPlayerID(result.data);
+        if (result.data) {
+          console.log(result.data, 'line 22 id data');
+          setPhotoSrc(`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${result.data.person_id}.png`)
+        }
       })
       .catch((err) => console.log(err));
   }
-
-  // useEffect(() => {
-  //   getPlayer();
-  // }, []);
 
   useEffect(() => {
     getID();
@@ -75,7 +52,7 @@ function PlayerCard({ player }) {
           <Text>{player.apg}&nbsp;assists</Text>
         </Box>
         <Box display="flex" justifyContent="center">
-          <Image src={photoSrc} alt="playerPhoto" />
+          <Image src={photoSrc} alt="playerPhoto" h="190px" w="260px" />
         </Box>
       </Box>
     </Box>
