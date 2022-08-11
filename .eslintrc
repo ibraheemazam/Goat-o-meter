@@ -3,6 +3,7 @@
   "ignorePatterns": ["webpack.config.js"],
   "rules": {
     "no-console": "off",
+    "react/prop-types": [0]
     // "import/extensions": ["always"]
   }
 }

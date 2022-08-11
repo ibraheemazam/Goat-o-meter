@@ -4,95 +4,77 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 
-function PlayerCard() { //this will take in player and season as props
+function PlayerCard( {playerInfo} ) { //this will take in player and season as props
   const [player, setPlayer] = useState({});
-  const [games, setGames] = useState([]);
-  const [ppg, setPpg] = useState();
-  const [rpg, setRpg] = useState();
-  const [apg, setApg] = useState();
 
   function getPlayer() {
     return (
-      axios.get('https://www.balldontlie.io/api/v1/players', {
+      axios.get('/playerStats', {
         params: {
-          search: 'lebron',
+          player: playerInfo.player,
+          season: playerInfo.season,
         },
       })
         .then((result) => {
-          // console.log(result.data.data);
-          setPlayer(result.data.data[0]);
+          console.log(result.data);
+          setPlayer(result.data[0]);
         })
         .catch((err) => console.log('error retrieving player info from API:\n', err))
     );
   }
 
-  function getStats() {
-    return (
-      axios.get('https://www.balldontlie.io/api/v1/stats', {
-        params: {
-          player_ids: [237],
-          seasons: [2017],
-          postseason: false,
-          per_page: 100,
-        },
-      })
-        .then((result) => {
-          console.log(result.data.data);
-          setGames(result.data.data);
-        })
-        .catch((err) => console.log('error retrieving player info from API:\n', err))
-    );
-  }
-
-  function calcAve() {
-    let points = 0; let rebounds = 0; let assists = 0;
-    const totalGames = games.length;
-    games.forEach((game) => {
-      points += game.pts; rebounds += game.reb; assists += game.ast;
-    });
-    setPpg(Math.round((points / totalGames) * 10) / 10);
-    setApg(Math.round((assists / totalGames) * 10) / 10);
-    setRpg(Math.round((rebounds / totalGames) * 10) / 10);
-  }
+  // function getStats() {
+  //   return (
+  //     axios.get('https://www.balldontlie.io/api/v1/stats', {
+  //       params: {
+  //         player_ids: [237],
+  //         seasons: [2017],
+  //         postseason: false,
+  //         per_page: 100,
+  //       },
+  //     })
+  //       .then((result) => {
+  //         console.log(result.data.data);
+  //         setGames(result.data.data);
+  //       })
+  //       .catch((err) => console.log('error retrieving player info from API:\n', err))
+  //   );
+  // }
 
   useEffect(() => {
     getPlayer();
   }, []);
 
-  useEffect(() => {
-    getStats();
-  }, []);
+  // useEffect(() => {
+  //   getStats();
+  // }, []);
 
-  useEffect(() => {
-    calcAve();
-  }, [games]);
-
-  if (!player.team || !games[0]) {
+  if (!playerInfo.player) {
     return <CircularProgress display="flex" justifyContent="center" />;
   }
 
   return (
-    <div>
-      <Box w="35vw" border="1px" borderRadius="10px">
+    <Box m="3vw">
+      <Box className="cardContainer" w="35vw" border="1px" borderRadius="10px">
         <Box m="1vw" className="titleContainer" display="flex">
           <Text display="flex" justifyContent="center" w="25%" fontSize="xl">
-            {player.team.abbreviation}
+            {player.team_abbreviation}
           </Text>
-          <Heading display="flex" justifyContent="center" w="50%">{player.first_name}</Heading>
+          <Heading display="flex" justifyContent="center" w="50%">{player.player_name}</Heading>
           <Text display="flex" justifyContent="center" w="25%">
-            {`${player.height_feet}'${player.height_inches}''`}
+            {`${player.player_height}`}
           </Text>
         </Box>
         <Box m="2vw">
-          <Text>{ppg.toString()}</Text>
-          <Text>{apg.toString()}</Text>
-          <Text>{rpg.toString()}</Text>
+          <Text>{player.ppg}</Text>
+          <Text>{player.rpg}</Text>
+          <Text>{player.apg}</Text>
         </Box>
         <Box display="flex" justifyContent="center">
-          <img src="https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/2544.png" />
+          <img src='https://nba-players.herokuapp.com/players/anthony/carmelo' />
         </Box>
       </Box>
-    </div>
+    </Box>
   );
 }
 

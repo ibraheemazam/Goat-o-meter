@@ -7,9 +7,6 @@ import axios from 'axios';
 function PlayerFilter() {
   const allSeasons = [...Array(22).keys()];
 
-  const [players, setPlayers] = useState([]);
-  const [seasonP, setSeasonP] = useState(2021);
-
   // axios.get('https://www.balldontlie.io/api/v1/players', {
   //   params: {
   //     search: 'lebron',
@@ -24,7 +21,7 @@ function PlayerFilter() {
   }
 
   return (
-    <div>
+    <Box m="3vw" mb="8vw">
       <form onSubmit={(e) => handleSubmit(e)}>
         <Input
           placeholder="Enter a player"
@@ -40,7 +37,7 @@ function PlayerFilter() {
           Add comp
         </Button>
       </form>
-    </div>
+    </Box>
   );
 }
 

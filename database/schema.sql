@@ -31,3 +31,18 @@ FROM '/Users/ibraheemazam/Downloads/all_seasons.csv'
 WITH DELIMITER ','
 CSV HEADER
 NULL 'null';
+
+DROP TABLE IF EXISTS NBA_ids;
+
+CREATE TABLE NBA_ids (
+  id SERIAL NOT NULL,
+  player_name VARCHAR(50),
+  person_id VARCHAR(10),
+  PRIMARY KEY (id)
+);
+
+COPY nba_ids
+FROM '/Users/ibraheemazam/Downloads/NBA-playerlistV2.csv'
+WITH DELIMITER ','
+CSV HEADER
+NULL 'null';
