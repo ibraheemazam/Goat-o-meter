@@ -25,6 +25,7 @@ function PlayerFilter({ setInfoArr }) {
       .then((result) => {
         console.log('player stats line 22', result.data[0]);
         if (result.data[0]) {
+          // need to check if player already exist in arr, if so dont add
           setInfoArr((prevArr) => prevArr.concat(result.data[0]));
         } else {
           console.log('that player was not found');
@@ -40,11 +41,13 @@ function PlayerFilter({ setInfoArr }) {
       <form onSubmit={(e) => handleSubmit(e)}>
         <Input
           placeholder="Enter a player"
+          _placeholder={{ opacity: 0.6, color: 'black' }}
           onChange={(e) => setPlayer(e.target.value)}
         />
         <Select
           onChange={(e) => setSeasonP(e.target.value)}
           placeholder="Select a season"
+          color="rgba(0, 0, 0, 0.6)"
         >
           {allSeasons.map((season) => <option key={season}>{2000 + season}</option>)}
         </Select>
