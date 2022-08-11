@@ -6,22 +6,13 @@ import PlayerCard from './PlayerCard/PlayerCard.jsx';
 import PlayerComp from './PlayerCard/PlayerComp.jsx';
 
 function App() {
-  const [infoArr, setInfoArr] = useState([
-    {
-      player: 'lebron',
-      season: '2021',
-    },
-    {
-      player: 'carmelo',
-      season: '2021',
-    },
-  ]);
+  const [infoArr, setInfoArr] = useState([]);
 
   return (
     <ChakraProvider>
       <Header />
-      <PlayerFilter />
-      <PlayerComp infoArr={infoArr} setInfo={setInfoArr} />
+      <PlayerFilter setInfoArr={setInfoArr} />
+      <PlayerComp infoArr={infoArr} />
     </ChakraProvider>
   );
 }

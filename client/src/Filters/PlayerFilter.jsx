@@ -4,20 +4,35 @@ import {
 } from '@chakra-ui/react';
 import axios from 'axios';
 
-function PlayerFilter() {
+function PlayerFilter({ setInfoArr }) {
   const allSeasons = [...Array(22).keys()];
-
-  // axios.get('https://www.balldontlie.io/api/v1/players', {
-  //   params: {
-  //     search: 'lebron',
-  //   },
-  // })
-  //   .then((result) => console.log(result.data.data)) //data.data[0] is actual lebron info
-  //   .catch((err) => console.log('error retrieving player info from API:\n', err));
+  const [player, setPlayer] = useState();
+  const [seasonP, setSeasonP] = useState();
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({ players, seasonP });
+    const newPInfo = {
+      player,
+      season: seasonP,
+    };
+    // first check if player exists, else send an alert saying player does not exist
+    axios.get('/playerStats', {
+      params: {
+        player,
+        season: seasonP,
+      },
+    })
+      .then((result) => {
+        console.log('player stats line 22', result.data[0]);
+        if (result.data[0]) {
+          setInfoArr((prevArr) => prevArr.concat(result.data[0]));
+        } else {
+          console.log('that player was not found');
+          setPlayer('Enter player');
+          setSeasonP('Enter season');
+        }
+      })
+    // console.log('newPinfo line 19', newPInfo);
   }
 
   return (
@@ -25,7 +40,7 @@ function PlayerFilter() {
       <form onSubmit={(e) => handleSubmit(e)}>
         <Input
           placeholder="Enter a player"
-          onChange={(e) => setPlayers([e.target.value])}
+          onChange={(e) => setPlayer(e.target.value)}
         />
         <Select
           onChange={(e) => setSeasonP(e.target.value)}

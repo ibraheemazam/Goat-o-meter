@@ -4,9 +4,9 @@ import PlayerCard from './PlayerCard.jsx';
 
 function PlayerComp({ infoArr }) {
   return (
-    <Box m="3vw" display="flex">
+    <Box className="playerCompBox" m="3vw" display="flex" overflow="auto">
       {
-        infoArr.map((playerInfo) => <PlayerCard key={playerInfo.player} playerInfo={playerInfo} />)
+        infoArr.map((player) => <PlayerCard key={player.player_id} player={player} />)
       }
     </Box>
   );

@@ -1,6 +1,6 @@
 const pool = require('../index.js');
 
-function getPlayerID(playerName = 'lebron') {
+function getPlayerID(playerName) {
   const queryString = `
   SELECT player_name, person_id
   FROM "nba_ids"
