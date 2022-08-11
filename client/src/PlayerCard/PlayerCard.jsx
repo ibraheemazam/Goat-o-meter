@@ -33,7 +33,7 @@ function PlayerCard({ player }) {
 
   return (
     <Box m="3vw">
-      <Box className="cardContainer" w="30vw" border="1px" borderRadius="10px">
+      <Box className="cardContainer" w="30vw" border="1px" borderRadius="10px" bg="orange">
         <Box m="1vw" className="titleContainer" display="flex">
           <Box display="flex" justifyContent="center" flexWrap="wrap" w="25%">
             <Text fontSize="xl">

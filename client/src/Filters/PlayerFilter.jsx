@@ -8,14 +8,10 @@ function PlayerFilter({ setInfoArr }) {
   const allSeasons = [...Array(22).keys()];
   const [player, setPlayer] = useState();
   const [seasonP, setSeasonP] = useState();
+  // need to add color as prop to fix dumb select thing
 
   function handleSubmit(e) {
     e.preventDefault();
-    const newPInfo = {
-      player,
-      season: seasonP,
-    };
-    // first check if player exists, else send an alert saying player does not exist
     axios.get('/playerStats', {
       params: {
         player,
@@ -24,16 +20,24 @@ function PlayerFilter({ setInfoArr }) {
     })
       .then((result) => {
         console.log('player stats line 22', result.data[0]);
-        if (result.data[0]) {
+        const currPlayer = result.data[0];
+        if (currPlayer) {
           // need to check if player already exist in arr, if so dont add
-          setInfoArr((prevArr) => prevArr.concat(result.data[0]));
+          setInfoArr((prevArr) => {
+            const idArr = [];
+            prevArr.forEach((playerInfo) => { idArr.push(playerInfo.player_id); });
+            if (idArr.includes(currPlayer.player_id)) {
+              console.log('This player was already added');
+              return prevArr;
+            }
+            return prevArr.concat(currPlayer);
+          });
         } else {
           console.log('that player was not found');
           setPlayer('Enter player');
           setSeasonP('Enter season');
         }
-      })
-    // console.log('newPinfo line 19', newPInfo);
+      });
   }
 
   return (
