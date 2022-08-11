@@ -3,7 +3,7 @@ import { Box, Heading, Image } from '@chakra-ui/react';
 
 function Header() {
   return (
-    <Box m="3vw" mb="6vw" display="flex" alignItems="center" justifyContent="space-evenly">
+    <Box m="1vw" display="flex" alignItems="center" justifyContent="space-evenly" h="15vh">
       <Image
         src="photos/194-1947999_funny-goat-png-gg-goat.png"
         alt="goat pic"

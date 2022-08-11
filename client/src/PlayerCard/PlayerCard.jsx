@@ -32,26 +32,26 @@ function PlayerCard({ player }) {
   }
 
   return (
-    <Box m="3vw">
-      <Box className="cardContainer" w="30vw" border="1px" borderRadius="10px" bg="orange">
-        <Box m="1vw" className="titleContainer" display="flex">
+    <Box m="1vw">
+      <Box className="cardContainer" w="30vw" maxW="30vw" border="1px" borderRadius="10px" bg="orange">
+        <Box m="1vw" className="titleContainer" display="flex" maxHeight="80px">
           <Box display="flex" justifyContent="center" flexWrap="wrap" w="25%">
             <Text fontSize="xl">
               {player.team_abbreviation}
             </Text>
           </Box>
-          <Heading display="flex" justifyContent="center" w="50%">{player.player_name}</Heading>
+          <Heading display="flex" justifyContent="flexStart" w="50%" size="xl" overflow="hidden">{player.player_name}</Heading>
           <Text display="flex" justifyContent="center" w="25%">
             {`${player.player_height}`}
           </Text>
         </Box>
-        <Box m="2vw">
+        <Box className="statsContainer" m="2vw">
           <Text fontSize="xl">{player.season}</Text>
           <Text>{player.ppg}&nbsp;points</Text>
           <Text>{player.rpg}&nbsp;rebounds</Text>
           <Text>{player.apg}&nbsp;assists</Text>
         </Box>
-        <Box display="flex" justifyContent="center">
+        <Box className="photoContainer" display="flex" justifyContent="center">
           <Image src={photoSrc} alt="playerPhoto" h="190px" w="260px" />
         </Box>
       </Box>

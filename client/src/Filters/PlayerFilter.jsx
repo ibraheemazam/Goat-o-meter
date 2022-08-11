@@ -34,14 +34,14 @@ function PlayerFilter({ setInfoArr }) {
           });
         } else {
           console.log('that player was not found');
-          setPlayer('Enter player');
-          setSeasonP('Enter season');
+          // setPlayer('Enter player');
+          // setSeasonP('Enter season');
         }
       });
   }
 
   return (
-    <Box m="3vw" mb="8vw">
+    <Box m="3vw" mb="2vw" h="15vh">
       <form onSubmit={(e) => handleSubmit(e)}>
         <Input
           placeholder="Enter a player"
