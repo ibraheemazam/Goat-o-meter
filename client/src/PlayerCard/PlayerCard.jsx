@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Box, Stack, Image, Input, Select, Heading, Text, CircularProgress,
+  Image, Flex, Heading, Text, CircularProgress,
 } from '@chakra-ui/react';
 import axios from 'axios';
+import CardTitle from './CardTitle.jsx';
 
 function PlayerCard({ player }) {
   const [photoSrc, setPhotoSrc] = useState('photos/goat-transparent-1.png');
@@ -32,30 +33,20 @@ function PlayerCard({ player }) {
   }
 
   return (
-    <Box m="1vw">
-      <Box className="cardContainer" w="30vw" maxW="30vw" border="1px" borderRadius="10px" bg="orange">
-        <Box m="1vw" className="titleContainer" display="flex" maxHeight="80px">
-          <Box display="flex" justifyContent="center" flexWrap="wrap" w="25%">
-            <Text fontSize="xl">
-              {player.team_abbreviation}
-            </Text>
-          </Box>
-          <Heading display="flex" justifyContent="flexStart" w="50%" size="xl" overflow="hidden">{player.player_name}</Heading>
-          <Text display="flex" justifyContent="center" w="25%">
-            {`${player.player_height}`}
-          </Text>
-        </Box>
-        <Box className="statsContainer" m="2vw">
+    <Flex m="1vw">
+      <Flex className="cardContainer" flexWrap="wrap" justifyContent="center" w="30vw" maxW="30vw" border="1px" borderRadius="10px" bg="orange">
+        <CardTitle player={player} />
+        <Flex className="statsContainer" m="2vw" flexDirection="column">
           <Text fontSize="xl">{player.season}</Text>
           <Text>{player.ppg}&nbsp;points</Text>
           <Text>{player.rpg}&nbsp;rebounds</Text>
           <Text>{player.apg}&nbsp;assists</Text>
-        </Box>
-        <Box className="photoContainer" display="flex" justifyContent="center">
-          <Image src={photoSrc} alt="playerPhoto" h="190px" w="260px" />
-        </Box>
-      </Box>
-    </Box>
+        </Flex>
+        <Flex className="photoContainer">
+          <Image display="flex" src={photoSrc} alt="playerPhoto" h="190px" w="260px" />
+        </Flex>
+      </Flex>
+    </Flex>
   );
 }
 
