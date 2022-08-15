@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import { ChakraProvider, Box, Heading } from '@chakra-ui/react';
+import { ChakraProvider, Heading, Flex } from '@chakra-ui/react';
 import PlayerCard from './PlayerCard.jsx';
 
 function PlayerComp({ infoArr }) {
   return (
-    <Box className="playerCompBox" m="3vw" display="flex" overflow="auto">
+    <Flex className="playerCompBox" m="3vw" overflow="auto">
       {
         infoArr.map((player) => <PlayerCard key={player.player_id} player={player} />)
       }
-    </Box>
+    </Flex>
   );
 }
 
 export default PlayerComp;
+
+// flexDirection="row-reverse"

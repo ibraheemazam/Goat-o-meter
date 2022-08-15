@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Box, FormControl, Input, Select, Button
+  Box, FormControl, Input, Select, Button, Modal, ModalContent, ModalOverlay, ModalBody, useToast
 } from '@chakra-ui/react';
 import axios from 'axios';
 
@@ -8,7 +8,9 @@ function PlayerFilter({ setInfoArr }) {
   const allSeasons = [...Array(22).keys()];
   const [player, setPlayer] = useState();
   const [seasonP, setSeasonP] = useState();
+  // const [showAlert, setShowAlert] = useState(false);
   // need to add color as prop to fix dumb select thing
+  const toast = useToast();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -19,29 +21,45 @@ function PlayerFilter({ setInfoArr }) {
       },
     })
       .then((result) => {
-        console.log('player stats line 22', result.data[0]);
         const currPlayer = result.data[0];
         if (currPlayer) {
-          // need to check if player already exist in arr, if so dont add
           setInfoArr((prevArr) => {
             const idArr = [];
             prevArr.forEach((playerInfo) => { idArr.push(playerInfo.player_id); });
             if (idArr.includes(currPlayer.player_id)) {
-              console.log('This player was already added');
+              toast({
+                title: 'Player already added',
+                duration: 2000,
+              });
               return prevArr;
             }
+            toast({
+              title: 'Player added',
+              duration: 2000,
+              status: 'success',
+            });
             return prevArr.concat(currPlayer);
           });
         } else {
-          console.log('that player was not found');
-          // setPlayer('Enter player');
-          // setSeasonP('Enter season');
+          return toast({
+            title: 'that player was not found',
+            duration: 1000,
+          });
         }
       });
   }
 
   return (
     <Box m="3vw" mb="2vw" h="15vh">
+      {/* <Button
+        onClick={() =>
+          toast({
+            title: 'Account created'
+          })
+        }
+      >
+        Show toast
+      </Button> */}
       <form onSubmit={(e) => handleSubmit(e)}>
         <Input
           placeholder="Enter a player"
@@ -56,7 +74,7 @@ function PlayerFilter({ setInfoArr }) {
           {allSeasons.map((season) => <option key={season}>{2000 + season}</option>)}
         </Select>
         <Button type="submit" loadingText="calculating">
-          Add comp
+          Add player
         </Button>
       </form>
     </Box>

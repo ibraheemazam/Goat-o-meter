@@ -5,16 +5,20 @@ import {
 
 function CardTitle({ player }) {
   return (
-    <Flex m="1vw" className="titleContainer" maxHeight="95px">
-      <Flex display="flex" justifyContent="center" flexWrap="wrap" w="25%">
+    <Flex m="1vw" className="titleContainer" maxHeight="95px" minWidth="100%">
+      <Flex justifyContent="center" flexWrap="wrap" w="20%">
         <Text fontSize="xl">
           {player.team_abbreviation}
         </Text>
       </Flex>
-      <Heading display="flex" justifyContent="flexStart" w="50%" size="xl" overflow="hidden">{player.player_name}</Heading>
-      <Text display="flex" justifyContent="center" w="25%">
-        {`${player.player_height}`}
-      </Text>
+      <Flex w="60%" justifyContent="center">
+        <Heading fontSize="4xl" overflow="hidden" textAlign="center">{player.player_name}</Heading>
+      </Flex>
+      <Flex w="20%">
+        <Text display="flex" justifyContent="center">
+          {`${player.player_height}`}
+        </Text>
+      </Flex>
     </Flex>
   );
 }

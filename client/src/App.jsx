@@ -18,7 +18,7 @@ function App() {
 
   return (
     <ChakraProvider theme={theme}>
-      <Box display="flex" justifyContent="center" h="100vh">
+      <Box display="flex" justifyContent="center" h="100vh" w="100vw">
         <Box w="15%" display="flex" justifyContent="center" alignItems="center">
           <Heading>...</Heading>
         </Box>
