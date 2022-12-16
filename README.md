@@ -39,4 +39,4 @@ Add in more players to compare their statistics!
 
 
 
-© GoalSeekr 2022  
+© Goat-O-Meter 2022  
