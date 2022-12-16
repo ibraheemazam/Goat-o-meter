@@ -39,4 +39,4 @@ Add in more players to compare their statistics!
 
 
 
-© Goat-O-Meter 2022  
+© Goat-o-meter 2022  
